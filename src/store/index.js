@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import Cookie from 'js-cookie'
 
-axios.defaults.baseURL = 'http://localhost:8000/api/'
+axios.defaults.baseURL = 'https://craigsad.herokuapp.com/api/'
 axios.defaults.withCredentials = true
 
 export default createStore({

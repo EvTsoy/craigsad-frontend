@@ -13,7 +13,7 @@ const app = createApp(App)
 app.component('pagination', Pagination)
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8000/api/',
+  baseURL: 'https://craigsad.herokuapp.com/api/',
   withCredentials: true
 })
 
