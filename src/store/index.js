@@ -93,6 +93,7 @@ export default createStore({
           ) + 'sanctum/csrf-cookie'
         )
         .then(response => {
+          console.log(response)
           axios.post('login', data).then(() => {
             dispatch('fetchUser')
           })
