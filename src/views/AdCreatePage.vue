@@ -54,8 +54,10 @@ export default {
       const formData = new FormData()
       formData.append('title', this.title)
       formData.append('description', this.description)
-      for (var i = 0; i < this.images.length; i++) {
-        formData.append('images[]', this.images[i])
+      if (this.images) {
+        for (var i = 0; i < this.images.length; i++) {
+          formData.append('images[]', this.images[i])
+        }
       }
 
       this.$store

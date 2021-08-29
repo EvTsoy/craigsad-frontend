@@ -35,7 +35,7 @@
         >
           Login
         </router-link>
-        <button type="button" class="btn btn-primary">Sign-up</button>
+        <!-- <button type="button" class="btn btn-primary">Sign-up</button> -->
       </div>
 
       <div class="col-md-3 text-end" v-else>

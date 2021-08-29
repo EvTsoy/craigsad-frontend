@@ -19,7 +19,7 @@
             aria-label="Default select example"
             v-model="sortBy"
           >
-            <option selected>Sort By</option>
+            <option selected disabled>Sort By</option>
             <option value="asc">Asc</option>
             <option value="desc">Desc</option>
           </select>
