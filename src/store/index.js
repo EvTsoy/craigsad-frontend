@@ -95,7 +95,7 @@ export default createStore({
         .then(() => {
           return axios.post('login', data).then(res => {
             console.log(res.data)
-            Cookie.set('jwt2', res.data.jwt, { domain: '.herokuapp.com' })
+            Cookie.set('jwt', res.data.jwt, { domain: '.herokuapp.com' })
             dispatch('fetchUser')
           })
         })
