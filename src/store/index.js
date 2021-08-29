@@ -1,9 +1,9 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import Cookie from 'js-cookie'
 
 axios.defaults.baseURL = 'https://craigsad.herokuapp.com/api/'
 axios.defaults.withCredentials = true
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 export default createStore({
   state: {
@@ -85,18 +85,22 @@ export default createStore({
     },
 
     login ({ dispatch }, data) {
-      axios
+      return axios
         .get(
           axios.defaults.baseURL.substring(
             0,
             axios.defaults.baseURL.length - 4
           ) + 'sanctum/csrf-cookie'
         )
-        .then(response => {
-          console.log(response)
-          axios.post('login', data).then(() => {
-            dispatch('fetchUser')
-          })
+        .then(() => {
+          return axios
+            .post('login', data)
+            .then(() => {
+              dispatch('fetchUser')
+            })
+            .then(res => {
+              console.log(res)
+            })
         })
     },
 
