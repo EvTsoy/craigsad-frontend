@@ -1,25 +1,57 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import AdsPage from '@/views/AdsPage.vue'
+import AdPage from '@/views/AdPage.vue'
+import AdEditPage from '@/views/AdEditPage.vue'
+import LoginPage from '@/views/LoginPage.vue'
+import PageLayout from '@/views/Layout/PageLayout.vue'
+import AdCreatePage from '@/views/AdCreatePage.vue'
 
 const routes = [
+  { path: '/login', name: 'LoginPage', component: LoginPage },
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: PageLayout,
+    redirect: '/ads',
+    children: [
+      {
+        path: 'ads',
+        name: 'AdsPage',
+        component: AdsPage
+      },
+      {
+        path: 'ads/:id',
+        name: 'AdPage',
+        component: AdPage,
+        props: true
+      },
+      {
+        path: 'ads/:id/edit',
+        name: 'AdEditPage',
+        component: AdEditPage,
+        props: true
+      },
+      {
+        path: 'ads/create',
+        name: 'AdCreatePage',
+        component: AdCreatePage
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  { path: '/:catchAll(.*)', redirect: { name: 'AdsPage' } }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+
+  next()
 })
 
 export default router
