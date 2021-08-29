@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import Cookie from 'js-cookie'
 
-axios.defaults.baseURL = 'https://craigsad.herokuapp.com/api/'
+axios.defaults.baseURL = 'http://localhost:8000/api/'
 axios.defaults.withCredentials = true
 
 export default createStore({
@@ -93,14 +93,11 @@ export default createStore({
           ) + 'sanctum/csrf-cookie'
         )
         .then(() => {
-          return axios
-            .post('login', data)
-            .then(() => {
-              dispatch('fetchUser')
-            })
-            .then(res => {
-              console.log(res)
-            })
+          return axios.post('login', data).then(res => {
+            console.log(res.data)
+            Cookie.set('jwt2', res.data.jwt, { domain: '.herokuapp.com' })
+            dispatch('fetchUser')
+          })
         })
     },
 
